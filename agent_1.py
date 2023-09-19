@@ -7,7 +7,7 @@ C = '\033[36m'  # cyan
 W = '\033[0m'  # white
 Y = '\033[33m'  # yellow
 
-apikey = "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"
+apikey = "key value"
 ai.api_key = apikey
 model_engin = 'text-davinci-003'
 prompt = [
