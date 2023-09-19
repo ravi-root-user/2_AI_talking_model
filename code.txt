@@ -1,0 +1,91 @@
+//This is program 1
+import openai as ai
+import os
+
+R = '\033[31m'  # red
+G = '\033[32m'  # green
+C = '\033[36m'  # cyan
+W = '\033[0m'  # white
+Y = '\033[33m'  # yellow
+
+apikey = "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"
+ai.api_key = apikey
+model_engin = 'text-davinci-003'
+prompt = [
+    "Talk & Keep the sentence short wait before answering back in the conversation"]
+max_tokens_per_line = 30
+completion = ai.Completion.create(
+    engine=model_engin,
+    prompt=prompt,
+    max_tokens=max_tokens_per_line,
+    n=1,
+    stop=None,
+    temperature=0.5,
+)
+response = completion.choices[0].text
+print("hello from agent 1")
+print(G + response)
+print("Writing into file")
+with open('myfile.txt', 'w') as file:
+    file.write(response)
+print("Writing done\nCalling 2nd program")
+os.system("python3 agent_2.py")
+print("bye from agent 1")
+
+//This is program 2
+import os
+import openai as ai
+
+R = '\033[31m'  # red
+G = '\033[32m'  # green
+C = '\033[36m'  # cyan
+W = '\033[0m'  # white
+Y = '\033[33m'  # yellow
+
+apikey = "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"
+ai.api_key = apikey
+model_engin = 'text-davinci-003'
+with open('myfile.txt', 'r') as file:
+    content = file.read()
+    prompt = ["Act as Morty from 'Rick & Morty' show. Keep the line as short conversation wait before answering back "
+              "in the convo",content]
+max_tokens_per_line = 30
+completion = ai.Completion.create(
+    engine=model_engin,
+    prompt=prompt,
+    max_tokens=max_tokens_per_line,
+    n=1,
+    stop=None,
+    temperature=0.5,
+)
+response = completion.choices[0].text
+print(response)
+with open('myfile.txt', 'w') as file:
+    file.write(response)
+print(R + response)
+print("hello from agent 2")
+# os.system("python3 agent_1.py")
+print("bye from agent 2")
+
+
+The about code should call 2nd function after generating a response and writing it into file for reference of program 2. The program 2 should read file and take that as promp to give reply back. I an getting the output as below.
+
+//Output
+
+
+
+Got it, will do.
+Writing into file
+Writing done
+Calling 2nd program
+
+
+Rick: Hey Morty, let's go on an adventure!
+Morty: Okay, sounds cool! Where are we going?
+
+
+Rick: Hey Morty, let's go on an adventure!
+Morty: Okay, sounds cool! Where are we going?
+hello from agent 2
+bye from agent 2
+bye from agent 1
