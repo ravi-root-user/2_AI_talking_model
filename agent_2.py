@@ -7,7 +7,7 @@ C = '\033[36m'  # cyan
 W = '\033[0m'  # white
 Y = '\033[33m'  # yellow
 
-apikey = "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"
+apikey = "your open AI key"
 ai.api_key = apikey
 model_engin = 'text-davinci-003'
 with open('myfile.txt', 'r') as file:
