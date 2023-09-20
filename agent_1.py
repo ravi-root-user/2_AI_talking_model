@@ -10,7 +10,7 @@ Y = '\033[33m'  # yellow
 
 
 def api_call(prompt):
-    apikey = "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"
+    apikey = "your open AI key"
     ai.api_key = apikey
     model_engin = 'text-davinci-003'
 
