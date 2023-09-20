@@ -7,27 +7,27 @@ C = '\033[36m'  # cyan
 W = '\033[0m'  # white
 Y = '\033[33m'  # yellow
 
-apikey = "key value"
+apikey = "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"
 ai.api_key = apikey
 model_engin = 'text-davinci-003'
 with open('myfile.txt', 'r') as file:
     content = file.read()
-    prompt = ["Act as Morty from 'Rick & Morty' show. Keep the line as short conversation wait before answering back "
-              "in the convo",content]
-max_tokens_per_line = 10
+    prompt = ["Act as Morty from 'Rick & Morty' show. try to be funny and talk to your grandfather rick"
+              "story that is not in any episode ",content]
+
 completion = ai.Completion.create(
     engine=model_engin,
     prompt=prompt,
-    max_tokens=max_tokens_per_line,
+    max_tokens=1024,
     n=1,
     stop=None,
     temperature=0.5,
 )
 response = completion.choices[0].text
-print(response)
+
 with open('myfile.txt', 'w') as file:
     file.write(response)
-print(R + response)
-print("hello from agent 2")
-# os.system("python3 agent_1.py")
-print("bye from agent 2")
+print(G + response)
+
+os.system("python3 agent_1.py")
+
